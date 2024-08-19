@@ -9,7 +9,6 @@ Image Compressor is a web application that allows users to compress images effic
 - **Image Upload**: Users can upload images from their local system.
 - **Image Compression**: The application compresses the uploaded images to reduce their size.
 - **Download Compressed Images**: Users can download the compressed images.
-- **Cloud Storage**: Images are stored in cloud storage, and only URLs or IDs are saved in the database for optimization.
 
 ## Technologies Used
 
@@ -33,7 +32,7 @@ Image Compressor is a web application that allows users to compress images effic
 # Start the backend server
 
 cd backend
-npm run dev
+node server.js
 
 # or
 
@@ -48,31 +47,7 @@ npm run dev
 
 yarn dev
 
-5. **Project Structure**
-   image-compressor/
-   ├── backend/
-   │ ├── controllers/
-   │ ├── models/
-   │ ├── routes/
-   │ ├── .env
-   │ ├── server.js
-   │ └── package.json
-   ├── frontend/
-   │ ├── src/
-   │ │ ├── components/
-   │ │ │ ├── Header/
-   │ │ │ │ ├── Header.jsx
-   │ │ │ │ └── Header.css
-   │ │ ├── App.jsx
-   │ │ ├── App.css
-   │ │ └── index.js
-   │ ├── public/
-   │ ├── .env
-   │ └── package.json
-   ├── README.md
-   └── .gitignore
-
-6. **Contributing**
+4. **Contributing**
    Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
 For any questions or suggestions, please contact karntiwari5353email@example.com
