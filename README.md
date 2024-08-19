@@ -113,5 +113,4 @@ yarn dev
 6. **Contributing**
    Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
-For any questions or suggestions, please contact karntiwari5353email@example.com.
-And my name is KT
+For any questions or suggestions, please contact karntiwari5353email@example.com
