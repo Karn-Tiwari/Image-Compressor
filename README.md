@@ -15,16 +15,6 @@ Image Compressor is a web application that allows users to compress images effic
 
 - **Frontend**: React, Vite, Tailwind CSS
 - **Backend**: Node.js, Express
-- **Cloud Storage**: AWS S3 (or any other cloud storage service)
-- **Database**: MongoDB (or any other database)
-
-## Installation
-
-### Prerequisites
-
-- Node.js
-- npm or yarn
-- AWS account (if using AWS S3 for storage)
 
 ### Steps
 
@@ -33,40 +23,12 @@ Image Compressor is a web application that allows users to compress images effic
    ```sh
    git clone https://github.com/your-username/image-compressor.git
    cd image-compressor
-
    ```
 
-2. **Install dependencies**:
+2. **Set up environment variables**:
+   Create a .env file in the backend directory and add the following:
 
-   # For the frontend
-
-   cd frontend
-   npm install
-
-   ```
-
-   ```
-
-# or
-
-yarn install
-
-# For the backend
-
-cd ../backend
-npm install
-
-# or
-
-yarn install
-
-3. **Set up environment variables**: Create a .env file in the backend directory and add the following:
-   AWS_ACCESS_KEY_ID=your-aws-access-key-id
-   AWS_SECRET_ACCESS_KEY=your-aws-secret-access-key
-   AWS_REGION=your-aws-region
-   AWS_BUCKET_NAME=your-aws-bucket-name
-
-4. **Run the application**
+3. **Run the application**
 
 # Start the backend server
 
