@@ -29,23 +29,15 @@ Image Compressor is a web application that allows users to compress images effic
 
 3. **Run the application**
 
-# Start the backend server
+Start the backend server
 
 cd backend
 node server.js
 
-# or
-
-yarn dev
-
-# Start the frontend development server
+Start the frontend development server
 
 cd ../frontend
 npm run dev
-
-# or
-
-yarn dev
 
 4. **Contributing**
    Contributions are welcome! Please fork the repository and create a pull request with your changes.
