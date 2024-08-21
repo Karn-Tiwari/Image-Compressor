@@ -32,7 +32,7 @@ export default function Home() {
       setIsLoading(true);
       setCompressionProgress(0);
       const response = await axios.post(
-        "http://localhost:5000/api/v1/images/compress",
+        "https://image-compressor-backend.onrender.com/api/v1/images/compress",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
