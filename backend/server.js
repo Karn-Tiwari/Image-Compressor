@@ -10,6 +10,7 @@ const corsOptions = {
   origin: "http://localhost:5173",
   optionsSuccessStatus: 200,
 };
+
 // Middleware
 app.use(cors(corsOptions)); // Enable CORS for all routes
 app.use(express.json()); // Parse incoming JSON requests
@@ -27,11 +28,13 @@ app.use("/api/v1/images", upload.single("file"), imageRoutes);
 
 // Serve static files from the 'uploads' directory
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
+
 // Start the server
-const PORT = process.env.PORT || 5000; // Get the port from environment variables or default to 5000
+const PORT = process.env.PORT || 5000; // Get the port from environment variables or default to 3000
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // Start the server and log the port
