@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import uploadingDummyImageUrl from "../../img/uploadingLogo.jpg";
-import downloadingDummyImageUrl from "../../img/DownloadingLogo.jpg";
+// import uploadingDummyImageUrl from "../../img/uploadingLogo.jpg";
+// import downloadingDummyImageUrl from "../../img/DownloadingLogo.jpg";
 
 export default function Home() {
   const [image, setImage] = useState(null);
@@ -112,7 +112,7 @@ export default function Home() {
                     />
                   ) : (
                     <img
-                      src={uploadingDummyImageUrl}
+                      src="/img/UploadingLogo.jpg"
                       alt="Upload Dummy"
                       className="max-w-full h-auto"
                       style={{
@@ -150,7 +150,7 @@ export default function Home() {
                     />
                   ) : (
                     <img
-                      src={downloadingDummyImageUrl}
+                      src="/img/DownloadingLogo.jpg"
                       alt="Download Dummy"
                       className="max-w-full h-auto"
                       style={{
