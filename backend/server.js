@@ -6,9 +6,20 @@ const path = require("path"); // Import the 'path' module for handling and trans
 const imageRoutes = require("./routes/imageRoutes"); // Import the image routes from the 'imageRoutes' file
 const app = express(); // Create an Express application
 
+const allowedOrigins = [
+  "http://localhost:5173", // Local development
+  "https://image-compressor-sxe3.onrender.com", // Deployed frontend
+];
+
 const corsOptions = {
-  origin: "http://localhost:5173",
-  optionsSuccessStatus: 200,
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 // Middleware
@@ -36,5 +47,5 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 5000; // Get the port from environment variables or default to 3000
+const PORT = process.env.PORT || 5000; // Get the port from environment variables or default to 5000
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // Start the server and log the port
