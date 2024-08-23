@@ -1,51 +1,47 @@
-require("dotenv").config(); // Load environment variables from a .env file into process.env
-const express = require("express"); // Import the Express framework
-const cors = require("cors"); // Import the CORS middleware to enable Cross-Origin Resource Sharing
-const multer = require("multer"); // Import the Multer middleware for handling file uploads
-const path = require("path"); // Import the 'path' module for handling and transforming file paths
-const imageRoutes = require("./routes/imageRoutes"); // Import the image routes from the 'imageRoutes' file
-const app = express(); // Create an Express application
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const multer = require("multer");
+const path = require("path");
+const imageRoutes = require("./routes/imageRoutes");
+
+const app = express();
 
 const allowedOrigins = [
-  "http://localhost:5173", // Local development
-  "https://image-compressor-sxe3.onrender.com", // Deployed frontend
+  "http://localhost:5173",
+  "https://image-compressor-sxe3.onrender.com",
 ];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200,
 };
 
-// Middleware
-app.use(cors(corsOptions)); // Enable CORS for all routes
-app.use(express.json()); // Parse incoming JSON requests
-app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Multer configuration for file uploads (limit file size to 10MB)
-const storage = multer.memoryStorage(); // Use memory storage for uploaded files
+const storage = multer.memoryStorage();
 const upload = multer({
-  storage, // Set the storage option
-  limits: { fileSize: 10 * 1024 * 1024 }, // Limit file size to 10MB
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 },
 });
 
-// Use the image routes and apply the Multer middleware to handle single file uploads
 app.use("/api/v1/images", upload.single("file"), imageRoutes);
-
-// Serve static files from the 'uploads' directory
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Error handling middleware
+app.options("*", cors(corsOptions)); // Handle preflight requests
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
 
-// Start the server
-const PORT = process.env.PORT || 5000; // Get the port from environment variables or default to 5000
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // Start the server and log the port
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
