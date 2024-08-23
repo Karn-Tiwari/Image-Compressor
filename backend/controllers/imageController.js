@@ -21,8 +21,12 @@ exports.compressImage = async (req, res) => {
       targetSizeKB
     );
 
-    // Use environment variable for the base URL
+    // Get base URL from environment variable
     const baseUrl = process.env.BASE_URL;
+    if (!baseUrl) {
+      throw new Error("BASE_URL environment variable is not set");
+    }
+
     const compressedImageUrl = `${baseUrl}/uploads/${path.basename(
       compressedImagePath
     )}`;
