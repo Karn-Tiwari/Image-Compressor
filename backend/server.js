@@ -8,9 +8,7 @@ const app = express(); // Create an Express application
 
 const corsOptions = {
   origin: "http://localhost:5173",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  Credentials: true,
-  optionsSuccessStatus: 204,
+  optionsSuccessStatus: 200,
 };
 // Middleware
 app.use(cors(corsOptions)); // Enable CORS for all routes
