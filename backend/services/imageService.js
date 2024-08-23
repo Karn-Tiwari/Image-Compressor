@@ -1,13 +1,20 @@
 const sharp = require("sharp");
 const path = require("path");
 const fs = require("fs");
-const { v4: uuidv4 } = require("uuid");
 
 exports.compressImageService = async (file, targetSizeKB) => {
-  const outputFilePath = path.join(__dirname, "../uploads", `${uuidv4()}.jpg`);
+  const uploadsDir = path.join(__dirname, "../uploads");
+  const originalFileName = path.parse(file.originalname).name;
+  const outputFileName = `${originalFileName}-compressed.jpg`;
+  const outputFilePath = path.join(uploadsDir, outputFileName);
   const targetSizeBytes = targetSizeKB * 1024;
 
   try {
+    // Ensure the uploads directory exists
+    if (!fs.existsSync(uploadsDir)) {
+      fs.mkdirSync(uploadsDir, { recursive: true });
+    }
+
     console.log("starting compression...");
 
     // Initial compression attempt
