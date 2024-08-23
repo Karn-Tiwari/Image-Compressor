@@ -21,11 +21,11 @@ exports.compressImage = async (req, res) => {
       targetSizeKB
     );
 
-    // Force HTTPS in URL generation
-    const protocol = "https"; // Force HTTPS
-    const host = req.get("host");
-    const imageFileName = path.basename(compressedImagePath); // Extract file name from the path
-    const compressedImageUrl = `${protocol}://${host}/uploads/${imageFileName}`;
+    // Use environment variable for the base URL
+    const baseUrl = process.env.BASE_URL;
+    const compressedImageUrl = `${baseUrl}/uploads/${path.basename(
+      compressedImagePath
+    )}`;
 
     res.status(200).json({
       compressedImageUrl,

@@ -1,4 +1,6 @@
-require("dotenv").config();
+// server.js or app.js
+require("dotenv").config(); // Load environment variables from a .env file
+
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
@@ -14,7 +16,7 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -35,8 +37,6 @@ const upload = multer({
 
 app.use("/api/v1/images", upload.single("file"), imageRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-app.options("*", cors(corsOptions)); // Handle preflight requests
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
